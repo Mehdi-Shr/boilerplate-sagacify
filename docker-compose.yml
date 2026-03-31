@@ -24,10 +24,10 @@ services:
     volumes:
       - ./backend:/app
       - /app/node_modules
+      - /app/src/generated
     depends_on:
       postgres:
         condition: service_healthy
-    command: sh -c "npx prisma generate && npm run start:dev"
 
   frontend:
     build: ./frontend

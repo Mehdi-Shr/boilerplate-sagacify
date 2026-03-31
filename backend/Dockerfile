@@ -7,8 +7,8 @@ RUN npm install
 
 COPY . .
 
-USER node
+RUN npx prisma generate
 
 EXPOSE 3001
 
-CMD ["sh", "-c", "npx prisma generate && npm run start:dev"]
+CMD ["npm", "run", "start:dev"]
