@@ -4,19 +4,18 @@ Stack full stack prêt à dev — NestJS + React Router v7 + PostgreSQL, tout do
 
 ## Stack
 
-| Couche    | Technologie                        |
-|-----------|------------------------------------|
-| Backend   | NestJS (Node 22) + Prisma ORM      |
-| Frontend  | React Router v7 + Tailwind CSS v4  |
-| Base de données | PostgreSQL 16              |
-| Infra     | Docker + Docker Compose            |
+| Couche          | Technologie                       |
+|-----------------|-----------------------------------|
+| Backend         | NestJS (Node 22) + Prisma ORM     |
+| Frontend        | React Router v7 + Tailwind CSS v4 |
+| Base de données | PostgreSQL 16                     |
+| Infra           | Docker + Docker Compose           |
 
 ## Structure
 
 ```
 boilerplate-sagacify/
   docker-compose.yml
-  setup.sh                  ← premier lancement uniquement
   backend/
     prisma/schema.prisma    ← ajouter les modèles ici
     src/
@@ -31,19 +30,6 @@ boilerplate-sagacify/
 
 ## Lancer le projet
 
-### Premier lancement
-
-```bash
-bash setup.sh
-```
-
-Ce script :
-1. Démarre PostgreSQL
-2. Crée la migration Prisma initiale
-3. Démarre les 3 services
-
-### Lancements suivants
-
 ```bash
 docker-compose up -d
 ```
@@ -56,11 +42,9 @@ docker-compose up -d
 | Backend    | http://localhost:3001/api |
 | PostgreSQL | localhost:5432 / sagacify |
 
-## Développement
-
 Les volumes Docker sont montés — le hot reload fonctionne nativement sans rebuilder les images.
 
-### Ajouter un modèle Prisma
+## Ajouter un modèle Prisma
 
 1. Éditer `backend/prisma/schema.prisma`
 2. Lancer la migration :
@@ -71,7 +55,7 @@ DATABASE_URL="postgresql://postgres:postgres@localhost:5432/sagacify?schema=publ
   npx prisma migrate dev --name <nom>
 ```
 
-### Commandes utiles
+## Commandes utiles
 
 ```bash
 # Logs
