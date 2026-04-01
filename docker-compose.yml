@@ -31,9 +31,10 @@ services:
       - '5555:5555'
     environment:
       - DATABASE_URL=postgresql://postgres:postgres@postgres:5432/sagacify?schema=public
+      - BROWSER=none
     depends_on:
       - postgres
-    command: node_modules/.bin/prisma studio --port 5555 --hostname 0.0.0.0
+    command: node_modules/.bin/prisma studio --port 5555
 
   frontend:
     build: ./frontend
