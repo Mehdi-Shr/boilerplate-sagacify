@@ -22,6 +22,20 @@ services:
     depends_on:
       - postgres
 
+  prisma-studio:
+    image: node:22-alpine
+    working_dir: /app
+    volumes:
+      - ./backend:/app
+      - /app/node_modules
+    ports:
+      - '5555:5555'
+    environment:
+      - DATABASE_URL=postgresql://postgres:postgres@postgres:5432/sagacify?schema=public
+    depends_on:
+      - postgres
+    command: npx prisma studio --port 5555 --hostname 0.0.0.0
+
   frontend:
     build: ./frontend
     ports:
