@@ -12,4 +12,6 @@ npx prisma migrate deploy
 echo "Generating Prisma Client..."
 npx prisma generate
 
+chown -R $(stat -c "%u:%g" /app) /app/src/generated
+
 exec "$@"
