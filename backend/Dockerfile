@@ -2,13 +2,19 @@ FROM node:22-alpine
 
 WORKDIR /app
 
+RUN apk add --no-cache netcat-openbsd
+
 COPY package*.json ./
+COPY prisma ./prisma
+
 RUN npm install
 
 COPY . .
 
-RUN npx prisma generate
+COPY docker-entrypoint.sh /usr/local/bin/
+RUN chmod +x /usr/local/bin/docker-entrypoint.sh
 
 EXPOSE 3001
 
-CMD ["npm", "run", "start:docker"]
+ENTRYPOINT ["docker-entrypoint.sh"]
+CMD ["npm", "run", "start:dev"]
